@@ -104,14 +104,17 @@ float x = 0;
 void protocolTask(void *argument){
 	shycom.Begin();
 	while(1){
-		vTaskDelay(30);
+		vTaskDelay(10);
 		if((millis() - shycom.GetRxTimeStamp()) > 500 /*&& shycom.GetAvailable() > 0*/){
 			shycom.DoProtocol();
 		}
-//		float report[16];
-//		report[0] = focController.CloseLoopPositionTarget.Position;
-//		report[1] = focController.PidPosition.Actual;
-//		shycom.ReportCurveValue(report, 2);
+
+//		float report[10];
+//		report[0] = focController.PidPosition.Kp;
+//		report[1] = focController.PidPosition.Ki;
+//		report[2] = focController.PidPosition.Kd;
+//		report[3] = focController.CloseLoopPositionTarget.Position;
+//		shycom.ReportCurveValue(report, 4);
 	}
 }
 
