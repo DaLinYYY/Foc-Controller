@@ -50,7 +50,7 @@ void MagneticSensorSPI::Init(SPI_HandleTypeDef* spi, GPIO_TypeDef* chip_select_g
 
 int MagneticSensorSPI::GetRawCount(){
 
-	  uint16_t command = this->AngleRegister;
+	  uint16_t command = this->AngleRegister | 0x8000;
 
 	  //Send the command
 	  HAL_GPIO_WritePin(this->ChipSelectGpiox, this->ChipSelectPin, GPIO_PIN_RESET);
