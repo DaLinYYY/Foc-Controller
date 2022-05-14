@@ -26,7 +26,7 @@ void StartFocTask(void *argument)
 	focController.Init();
 	vTaskDelay(1000);
 
-	focController.Mode = FocController::CloseLoopSpeed;
+	focController.Mode = FocController::NoSensorOpenLoopSpeed;
 	while(1)
 	{
 		vTaskDelay(1);
@@ -109,12 +109,12 @@ void protocolTask(void *argument){
 			shycom.DoProtocol();
 		}
 
-//		float report[10];
-//		report[0] = focController.PidPosition.Kp;
-//		report[1] = focController.PidPosition.Ki;
-//		report[2] = focController.PidPosition.Kd;
-//		report[3] = focController.CloseLoopPositionTarget.Position;
-//		shycom.ReportCurveValue(report, 4);
+		float report[10];
+		report[0] = focController.PidPosition.Kp;
+		report[1] = focController.PidPosition.Ki;
+		report[2] = focController.PidPosition.Kd;
+		report[3] = focController.CloseLoopPositionTarget.Position;
+		shycom.ReportCurveValue(report, 4);
 	}
 }
 
